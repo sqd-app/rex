@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Baromètre social · ITS Green Challenge</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px 80px}
+header{background:#E1C19E;padding:30px 24px 36px}
+.hwrap{max-width:940px;margin:0 auto}
+.htop{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.pdf{font-family:Inter;font-weight:700;font-size:12.5px;background:#fff;color:#000;border:2px solid #000;
+ border-radius:999px;padding:8px 16px;cursor:pointer;white-space:nowrap}
+.pdf:hover{background:#E9FF60}
+.wordmark{font-family:Epilogue;font-weight:900;font-size:25px;letter-spacing:-.03em}
+.htitle{font-family:Epilogue;font-weight:900;text-transform:uppercase;font-size:clamp(26px,4.4vw,44px);line-height:1.02;letter-spacing:-.02em;margin:16px 0 4px}
+.hmeta{font-weight:600;font-size:15px}
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:-26px 0 44px}
+.tile{background:#fff;border:2px solid #000;border-radius:14px;padding:18px 20px}
+.tile.acid{background:#E9FF60}
+.tile .big{font-family:Epilogue;font-weight:900;font-size:40px;line-height:1;letter-spacing:-.03em}
+.tile .cap{font-weight:600;font-size:13.5px;margin-top:6px}
+h2{font-family:Epilogue;font-weight:900;text-transform:uppercase;font-size:clamp(17px,2.1vw,22px);letter-spacing:-.01em;margin:0 0 6px}
+.kicker{margin:0 0 18px;font-size:13.5px;font-weight:600;opacity:.72}
+section.q{padding:30px 0;border-top:2px solid #000}
+section.q.band{background:#E1C19E;margin:0 -24px;padding:30px 24px;border-radius:16px;border-top:none}
+.row{display:grid;grid-template-columns:minmax(140px,320px) 1fr;gap:14px;align-items:center;margin-bottom:10px}
+.lab{font-size:14.5px;font-weight:600}
+.track{position:relative;display:flex;align-items:center;gap:10px;min-height:26px}
+.bar{height:22px;background:#EF5DA8;border-radius:0 4px 4px 0;box-shadow:0 0 0 2px #fff}
+.bar:hover,.bar:focus{filter:brightness(.9);outline:none}
+.val{font-weight:700;font-size:14.5px;white-space:nowrap}
+.tableview{display:none}
+.viz[data-view="table"] .chart{display:none}
+.viz[data-view="table"] .tableview{display:block}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid rgba(0,0,0,.18)}
+th{font-weight:700;background:rgba(0,0,0,.05)}
+.toggle{margin-top:12px;font-weight:700;font-size:13px;background:#fff;color:#000;border:2px solid #000;border-radius:999px;padding:7px 16px;cursor:pointer}
+.toggle:hover{background:#E9FF60}
+details>summary{cursor:pointer;font-weight:700;font-size:14px;background:#fff;border:2px solid #000;border-radius:999px;padding:7px 16px;display:inline-block;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.6em;vertical-align:.12em;border-right:2.5px solid #000;border-bottom:2.5px solid #000;transform:rotate(45deg);transition:transform .15s}
+details[open]>summary::after{transform:rotate(-135deg);vertical-align:.3em}
+details>summary:hover{background:#E9FF60}
+section.q>details>summary{font-family:Epilogue;font-weight:900;text-transform:uppercase;font-size:clamp(15px,1.9vw,19px);letter-spacing:-.01em;border-radius:12px;padding:11px 18px}
+.cnt{font-family:Inter;font-weight:600;text-transform:none;font-size:13px;opacity:.7}
+section.q>details>.kicker{margin-top:16px}
+ol.verb{margin:18px 0 0;padding-left:0;list-style:none;counter-reset:v}
+ol.verb li{counter-increment:v;background:#C7F0BD;border-radius:12px;padding:13px 17px 13px 46px;margin-bottom:9px;font-size:15px;position:relative}
+ol.verb li::before{content:counter(v);position:absolute;left:15px;top:13px;font-weight:800;font-size:12.5px;opacity:.55}
+.tip{position:fixed;z-index:9;background:#000;color:#fff;font-size:12.5px;font-weight:600;padding:6px 10px;border-radius:7px;pointer-events:none;opacity:0;transition:opacity .1s}
+.actions{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:space-between;align-items:center;
+ background:#C7F0BD;border:1.5px solid #000;border-radius:999px;padding:7px 8px 7px 18px;margin-bottom:4px}
+.alab{font-size:12.5px;font-weight:600;opacity:.8}
+.abtns{display:flex;flex-wrap:wrap;gap:7px}
+.btn{display:inline-block;text-decoration:none;color:#000;background:#fff;border:1.5px solid #000;
+ border-radius:999px;padding:5px 13px;font-weight:700;font-size:12.5px;white-space:nowrap}
+.btn:hover{background:#E9FF60}
+@media(max-width:620px){.actions{border-radius:14px;padding:12px 14px}}
+footer{border-top:2px solid #000;margin-top:40px;padding-top:20px;font-size:13px;font-weight:600}
+@media(max-width:620px){.row{grid-template-columns:1fr;gap:3px}}
+@media print{
+ .toggle,.pdf,.actions{display:none!important}
+ body{font-size:11.5pt}
+ header{padding:18px 0 20px}
+ section.q{break-inside:auto;padding:18px 0}
+ section.q.band{background:#fff;margin:0;padding:18px 0;border-top:2px solid #000;border-radius:0}
+ h2,section.q>details>summary{break-after:avoid}
+ ol.verb li{break-inside:avoid;background:#f4f4f4}
+ details>summary{border:none;padding:0;background:none!important}
+ details>summary::after{display:none}
+ .tableview{display:none!important} .chart{display:block!important}
+ a[href]::after{content:""}
+}
+</style>
+</head>
+<body>
+<header><div class="hwrap">
+  <div class="htop">
+    <div class="wordmark">SquadEasy</div>
+    <button class="pdf" type="button" id="pdf">Télécharger en PDF</button>
+  </div>
+  <div class="htitle">Baromètre social</div>
+  <div class="hmeta">ITS Green Challenge · 2 au 23 septembre 2026</div>
+</div></header>
+<div class="wrap">
+<div class="hero">
+  <div class="tile acid"><div class="big">39</div><div class="cap">répondants, soit 45 % des participants</div></div>
+  <div class="tile"><div class="big">4,3/5</div><div class="cap">note moyenne du challenge</div></div>
+  <div class="tile"><div class="big">85 %</div><div class="cap">veulent refaire un challenge</div></div>
+  <div class="tile"><div class="big">67 %</div><div class="cap">estiment que la cohésion s'est renforcée</div></div>
+</div>
+<section class="actions">
+  <span class="alab">Base de 39 réponses, à lire comme une tendance et non comme une mesure</span>
+  <span class="abtns">
+    <a class="btn" href="https://squadeasy.typeform.com/to/dgRwRHQZ" target="_blank" rel="noopener">Ouvrir le questionnaire</a>
+    <a class="btn" href="mailto:benjamin@squadeasy.com?subject=Mise%20a%20jour%20du%20rapport%20-%20ITS%20Green%20Challenge&amp;body=Bonjour%2C%0A%0AJ%27espere%20que%20tu%20vas%20bien.%0A%0ADe%20nouvelles%20reponses%20ont%20ete%20ajoutees%20au%20questionnaire%20du%20challenge.%20Est-ce%20que%20tu%20peux%20mettre%20a%20jour%20le%20rapport%20du%20barometre%20social%20%3F%0A%0ABelle%20journee%20%21">Demander une mise à jour</a>
+  </span>
+</section>
+
+<section class="q">
+  <h2>As tu participé au challenge ?</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:100.00%" data-tip="100,0 % · 39 réponses" tabindex="0"></div><span class="val">100,0 %</span></div></div><div class="row"><div class="lab">Oui mais j&#x27;ai arrêté</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Non, je n&#x27;y ai jamais participé</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>100,0 %</td><td>39</td></tr><tr><td>Oui mais j&#x27;ai arrêté</td><td>0,0 %</td><td>0</td></tr><tr><td>Non, je n&#x27;y ai jamais participé</td><td>0,0 %</td><td>0</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Pourquoi ? (j&#x27;ai participé)</h2>
+  <p class="kicker">Plusieurs réponses possibles · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Pour me remettre en forme</div><div class="track"><div class="bar" style="width:30.80%" data-tip="30,8 % · 12 réponses" tabindex="0"></div><span class="val">30,8 %</span></div></div><div class="row"><div class="lab">Pour le défi sportif</div><div class="track"><div class="bar" style="width:74.40%" data-tip="74,4 % · 29 réponses" tabindex="0"></div><span class="val">74,4 %</span></div></div><div class="row"><div class="lab">Pour l&#x27;enjeu sur la mobilité durable</div><div class="track"><div class="bar" style="width:53.80%" data-tip="53,8 % · 21 réponses" tabindex="0"></div><span class="val">53,8 %</span></div></div><div class="row"><div class="lab">Pour soutenir la mission solidaire</div><div class="track"><div class="bar" style="width:59.00%" data-tip="59,0 % · 23 réponses" tabindex="0"></div><span class="val">59,0 %</span></div></div><div class="row"><div class="lab">Pour communiquer autrement avec mes collègues</div><div class="track"><div class="bar" style="width:25.60%" data-tip="25,6 % · 10 réponses" tabindex="0"></div><span class="val">25,6 %</span></div></div><div class="row"><div class="lab">Par effet de groupe</div><div class="track"><div class="bar" style="width:41.00%" data-tip="41,0 % · 16 réponses" tabindex="0"></div><span class="val">41,0 %</span></div></div><div class="row"><div class="lab">Pour le jeu</div><div class="track"><div class="bar" style="width:38.50%" data-tip="38,5 % · 15 réponses" tabindex="0"></div><span class="val">38,5 %</span></div></div><div class="row"><div class="lab">Autre</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Pour me remettre en forme</td><td>30,8 %</td><td>12</td></tr><tr><td>Pour le défi sportif</td><td>74,4 %</td><td>29</td></tr><tr><td>Pour l&#x27;enjeu sur la mobilité durable</td><td>53,8 %</td><td>21</td></tr><tr><td>Pour soutenir la mission solidaire</td><td>59,0 %</td><td>23</td></tr><tr><td>Pour communiquer autrement avec mes collègues</td><td>25,6 %</td><td>10</td></tr><tr><td>Par effet de groupe</td><td>41,0 %</td><td>16</td></tr><tr><td>Pour le jeu</td><td>38,5 %</td><td>15</td></tr><tr><td>Autre</td><td>0,0 %</td><td>0</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Pourquoi ? (j&#x27;ai arrêté)</h2>
+  <p class="kicker">Branche non empruntée · aucun répondant, toutes les modalités à zéro</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">J&#x27;étais seul</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je me suis blessé</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je me suis lassé</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">C&#x27;était trop dur</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">J&#x27;ai eu des soucis techniques</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Autre</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>J&#x27;étais seul</td><td>0,0 %</td><td>0</td></tr><tr><td>Je me suis blessé</td><td>0,0 %</td><td>0</td></tr><tr><td>Je me suis lassé</td><td>0,0 %</td><td>0</td></tr><tr><td>C&#x27;était trop dur</td><td>0,0 %</td><td>0</td></tr><tr><td>J&#x27;ai eu des soucis techniques</td><td>0,0 %</td><td>0</td></tr><tr><td>Autre</td><td>0,0 %</td><td>0</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Pourquoi ? (je n&#x27;ai pas participé)</h2>
+  <p class="kicker">Branche non empruntée · aucun répondant, toutes les modalités à zéro</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Mon téléphone n&#x27;était pas compatible</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je n&#x27;ai pas eu l&#x27;information à temps</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je pensais qu&#x27;il fallait être sportif</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je n&#x27;étais pas motivé</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">J&#x27;étais tout seul</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je n&#x27;avais aucune chance de gagner</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Autre</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Mon téléphone n&#x27;était pas compatible</td><td>0,0 %</td><td>0</td></tr><tr><td>Je n&#x27;ai pas eu l&#x27;information à temps</td><td>0,0 %</td><td>0</td></tr><tr><td>Je pensais qu&#x27;il fallait être sportif</td><td>0,0 %</td><td>0</td></tr><tr><td>Je n&#x27;étais pas motivé</td><td>0,0 %</td><td>0</td></tr><tr><td>J&#x27;étais tout seul</td><td>0,0 %</td><td>0</td></tr><tr><td>Je n&#x27;avais aucune chance de gagner</td><td>0,0 %</td><td>0</td></tr><tr><td>Autre</td><td>0,0 %</td><td>0</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Comment as-tu perçu le challenge de l&#x27;extérieur ?</h2>
+  <p class="kicker">Branche non empruntée · aucun répondant, toutes les modalités à zéro</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Je n&#x27;en ai pas entendu parler</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">J&#x27;ai vu mes collègues faire plus d&#x27;activité physique</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">J&#x27;ai observé une meilleure cohésion au sein de l&#x27;équipe-entreprise</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je ressens une meilleure ambiance</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Cela a alimenté les conversations</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Je n&#x27;y ai pas porté d&#x27;intérêt</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Autre</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Je n&#x27;en ai pas entendu parler</td><td>0,0 %</td><td>0</td></tr><tr><td>J&#x27;ai vu mes collègues faire plus d&#x27;activité physique</td><td>0,0 %</td><td>0</td></tr><tr><td>J&#x27;ai observé une meilleure cohésion au sein de l&#x27;équipe-entreprise</td><td>0,0 %</td><td>0</td></tr><tr><td>Je ressens une meilleure ambiance</td><td>0,0 %</td><td>0</td></tr><tr><td>Cela a alimenté les conversations</td><td>0,0 %</td><td>0</td></tr><tr><td>Je n&#x27;y ai pas porté d&#x27;intérêt</td><td>0,0 %</td><td>0</td></tr><tr><td>Autre</td><td>0,0 %</td><td>0</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>As-tu pratiqué davantage de sport qu&#x27;avant le challenge ?</h2>
+  <p class="kicker">Une seule réponse · 38 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:71.10%" data-tip="71,1 % · 27 réponses" tabindex="0"></div><span class="val">71,1 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:28.90%" data-tip="28,9 % · 11 réponses" tabindex="0"></div><span class="val">28,9 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>71,1 %</td><td>27</td></tr><tr><td>Non</td><td>28,9 %</td><td>11</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Je me sens de meilleure humeur et en pleine forme</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:82.10%" data-tip="82,1 % · 32 réponses" tabindex="0"></div><span class="val">82,1 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:17.90%" data-tip="17,9 % · 7 réponses" tabindex="0"></div><span class="val">17,9 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>82,1 %</td><td>32</td></tr><tr><td>Non</td><td>17,9 %</td><td>7</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Je me sens moins stressé(e) par le travail</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:53.80%" data-tip="53,8 % · 21 réponses" tabindex="0"></div><span class="val">53,8 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:46.20%" data-tip="46,2 % · 18 réponses" tabindex="0"></div><span class="val">46,2 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>53,8 %</td><td>21</td></tr><tr><td>Non</td><td>46,2 %</td><td>18</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Le challenge  t&#x27;a incité a changé tes comportements et tes gestes quotidiens vis à vis de l&#x27;environnement ? (écogestes, mobilité douce) ?</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:51.30%" data-tip="51,3 % · 20 réponses" tabindex="0"></div><span class="val">51,3 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:48.70%" data-tip="48,7 % · 19 réponses" tabindex="0"></div><span class="val">48,7 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>51,3 %</td><td>20</td></tr><tr><td>Non</td><td>48,7 %</td><td>19</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Connaissais-tu les membres de ton équipe avant le challenge ?</h2>
+  <p class="kicker">Une seule réponse · 38 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:89.50%" data-tip="89,5 % · 34 réponses" tabindex="0"></div><span class="val">89,5 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:10.50%" data-tip="10,5 % · 4 réponses" tabindex="0"></div><span class="val">10,5 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>89,5 %</td><td>34</td></tr><tr><td>Non</td><td>10,5 %</td><td>4</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Grâce au challenge, la cohésion au sein de mon équipe / entreprise s&#x27;est renforcée :</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:66.70%" data-tip="66,7 % · 26 réponses" tabindex="0"></div><span class="val">66,7 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:33.30%" data-tip="33,3 % · 13 réponses" tabindex="0"></div><span class="val">33,3 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>66,7 %</td><td>26</td></tr><tr><td>Non</td><td>33,3 %</td><td>13</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Compléter la phrase suivante avec la ou les expressions qui vous correspondent le plus, &quot;grâce au challenge, ...&quot;</h2>
+  <p class="kicker">Plusieurs réponses possibles · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">J&#x27;ai plus communiqué avec mes collègues</div><div class="track"><div class="bar" style="width:69.20%" data-tip="69,2 % · 27 réponses" tabindex="0"></div><span class="val">69,2 %</span></div></div><div class="row"><div class="lab">L&#x27;ambiance au travail s&#x27;est améliorée</div><div class="track"><div class="bar" style="width:7.70%" data-tip="7,7 % · 3 réponses" tabindex="0"></div><span class="val">7,7 %</span></div></div><div class="row"><div class="lab">J&#x27;ai observé et/ou ressenti une amélioration de la productivité</div><div class="track"><div class="bar" style="width:7.70%" data-tip="7,7 % · 3 réponses" tabindex="0"></div><span class="val">7,7 %</span></div></div><div class="row"><div class="lab">J&#x27;ai constaté une transformation plus responsable des comportements</div><div class="track"><div class="bar" style="width:15.40%" data-tip="15,4 % · 6 réponses" tabindex="0"></div><span class="val">15,4 %</span></div></div><div class="row"><div class="lab">Mes coéquipiers m&#x27;ont motivé à faire plus de sport</div><div class="track"><div class="bar" style="width:43.60%" data-tip="43,6 % · 17 réponses" tabindex="0"></div><span class="val">43,6 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>J&#x27;ai plus communiqué avec mes collègues</td><td>69,2 %</td><td>27</td></tr><tr><td>L&#x27;ambiance au travail s&#x27;est améliorée</td><td>7,7 %</td><td>3</td></tr><tr><td>J&#x27;ai observé et/ou ressenti une amélioration de la productivité</td><td>7,7 %</td><td>3</td></tr><tr><td>J&#x27;ai constaté une transformation plus responsable des comportements</td><td>15,4 %</td><td>6</td></tr><tr><td>Mes coéquipiers m&#x27;ont motivé à faire plus de sport</td><td>43,6 %</td><td>17</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Quelles animations as-tu préféré ?</h2>
+  <p class="kicker">Classement · 27 répondants</p><p class="kicker">La distribution compte les premières places. Rang moyen (1 = préféré) : Quiz 2.15, Missions 1.22, Défis photo 2.63</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Quiz</div><div class="track"><div class="bar" style="width:14.80%" data-tip="14,8 % · 4 réponses" tabindex="0"></div><span class="val">14,8 %</span></div></div><div class="row"><div class="lab">Missions</div><div class="track"><div class="bar" style="width:77.80%" data-tip="77,8 % · 21 réponses" tabindex="0"></div><span class="val">77,8 %</span></div></div><div class="row"><div class="lab">Défis photo</div><div class="track"><div class="bar" style="width:7.40%" data-tip="7,4 % · 2 réponses" tabindex="0"></div><span class="val">7,4 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Quiz</td><td>14,8 %</td><td>4</td></tr><tr><td>Missions</td><td>77,8 %</td><td>21</td></tr><tr><td>Défis photo</td><td>7,4 %</td><td>2</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>La mission solidaire a-t-elle été une source de motivation supplémentaire ?</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">OUI</div><div class="track"><div class="bar" style="width:64.10%" data-tip="64,1 % · 25 réponses" tabindex="0"></div><span class="val">64,1 %</span></div></div><div class="row"><div class="lab">NON</div><div class="track"><div class="bar" style="width:10.30%" data-tip="10,3 % · 4 réponses" tabindex="0"></div><span class="val">10,3 %</span></div></div><div class="row"><div class="lab">Pas spécialement</div><div class="track"><div class="bar" style="width:25.60%" data-tip="25,6 % · 10 réponses" tabindex="0"></div><span class="val">25,6 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>OUI</td><td>64,1 %</td><td>25</td></tr><tr><td>NON</td><td>10,3 %</td><td>4</td></tr><tr><td>Pas spécialement</td><td>25,6 %</td><td>10</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Quelle note donnes-tu au challenge ?</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">1</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">2</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">3</div><div class="track"><div class="bar" style="width:15.40%" data-tip="15,4 % · 6 réponses" tabindex="0"></div><span class="val">15,4 %</span></div></div><div class="row"><div class="lab">4</div><div class="track"><div class="bar" style="width:43.60%" data-tip="43,6 % · 17 réponses" tabindex="0"></div><span class="val">43,6 %</span></div></div><div class="row"><div class="lab">5</div><div class="track"><div class="bar" style="width:41.00%" data-tip="41,0 % · 16 réponses" tabindex="0"></div><span class="val">41,0 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>1</td><td>0,0 %</td><td>0</td></tr><tr><td>2</td><td>0,0 %</td><td>0</td></tr><tr><td>3</td><td>15,4 %</td><td>6</td></tr><tr><td>4</td><td>43,6 %</td><td>17</td></tr><tr><td>5</td><td>41,0 %</td><td>16</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Sur 10, tu recommanderais SquadEasy à une entreprise que tu connais ?</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">1</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">2</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">3</div><div class="track"><div class="bar" style="width:2.60%" data-tip="2,6 % · 1 réponse" tabindex="0"></div><span class="val">2,6 %</span></div></div><div class="row"><div class="lab">4</div><div class="track"><div class="bar" style="width:5.10%" data-tip="5,1 % · 2 réponses" tabindex="0"></div><span class="val">5,1 %</span></div></div><div class="row"><div class="lab">5</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">6</div><div class="track"><div class="bar" style="width:10.30%" data-tip="10,3 % · 4 réponses" tabindex="0"></div><span class="val">10,3 %</span></div></div><div class="row"><div class="lab">7</div><div class="track"><div class="bar" style="width:17.90%" data-tip="17,9 % · 7 réponses" tabindex="0"></div><span class="val">17,9 %</span></div></div><div class="row"><div class="lab">8</div><div class="track"><div class="bar" style="width:23.10%" data-tip="23,1 % · 9 réponses" tabindex="0"></div><span class="val">23,1 %</span></div></div><div class="row"><div class="lab">9</div><div class="track"><div class="bar" style="width:7.70%" data-tip="7,7 % · 3 réponses" tabindex="0"></div><span class="val">7,7 %</span></div></div><div class="row"><div class="lab">10</div><div class="track"><div class="bar" style="width:33.30%" data-tip="33,3 % · 13 réponses" tabindex="0"></div><span class="val">33,3 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>1</td><td>0,0 %</td><td>0</td></tr><tr><td>2</td><td>0,0 %</td><td>0</td></tr><tr><td>3</td><td>2,6 %</td><td>1</td></tr><tr><td>4</td><td>5,1 %</td><td>2</td></tr><tr><td>5</td><td>0,0 %</td><td>0</td></tr><tr><td>6</td><td>10,3 %</td><td>4</td></tr><tr><td>7</td><td>17,9 %</td><td>7</td></tr><tr><td>8</td><td>23,1 %</td><td>9</td></tr><tr><td>9</td><td>7,7 %</td><td>3</td></tr><tr><td>10</td><td>33,3 %</td><td>13</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>As-tu eu recours au support : Boogie ?</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:33.30%" data-tip="33,3 % · 13 réponses" tabindex="0"></div><span class="val">33,3 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:66.70%" data-tip="66,7 % · 26 réponses" tabindex="0"></div><span class="val">66,7 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>33,3 %</td><td>13</td></tr><tr><td>Non</td><td>66,7 %</td><td>26</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Que penses-tu de la qualité du support (Boogie) ?</h2>
+  <p class="kicker">Une seule réponse · 13 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">1</div><div class="track"><div class="bar" style="width:7.70%" data-tip="7,7 % · 1 réponse" tabindex="0"></div><span class="val">7,7 %</span></div></div><div class="row"><div class="lab">2</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">3</div><div class="track"><div class="bar" style="width:15.40%" data-tip="15,4 % · 2 réponses" tabindex="0"></div><span class="val">15,4 %</span></div></div><div class="row"><div class="lab">4</div><div class="track"><div class="bar" style="width:30.80%" data-tip="30,8 % · 4 réponses" tabindex="0"></div><span class="val">30,8 %</span></div></div><div class="row"><div class="lab">5</div><div class="track"><div class="bar" style="width:46.20%" data-tip="46,2 % · 6 réponses" tabindex="0"></div><span class="val">46,2 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>1</td><td>7,7 %</td><td>1</td></tr><tr><td>2</td><td>0,0 %</td><td>0</td></tr><tr><td>3</td><td>15,4 %</td><td>2</td></tr><tr><td>4</td><td>30,8 %</td><td>4</td></tr><tr><td>5</td><td>46,2 %</td><td>6</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>Aimerais-tu participer à un nouveau challenge ?</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Oui</div><div class="track"><div class="bar" style="width:84.60%" data-tip="84,6 % · 33 réponses" tabindex="0"></div><span class="val">84,6 %</span></div></div><div class="row"><div class="lab">Non</div><div class="track"><div class="bar" style="width:15.40%" data-tip="15,4 % · 6 réponses" tabindex="0"></div><span class="val">15,4 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Oui</td><td>84,6 %</td><td>33</td></tr><tr><td>Non</td><td>15,4 %</td><td>6</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Je suis...</h2>
+  <p class="kicker">Une seule réponse · 39 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">Un homme</div><div class="track"><div class="bar" style="width:69.20%" data-tip="69,2 % · 27 réponses" tabindex="0"></div><span class="val">69,2 %</span></div></div><div class="row"><div class="lab">Une femme</div><div class="track"><div class="bar" style="width:28.20%" data-tip="28,2 % · 11 réponses" tabindex="0"></div><span class="val">28,2 %</span></div></div><div class="row"><div class="lab">Autre</div><div class="track"><div class="bar" style="width:2.60%" data-tip="2,6 % · 1 réponse" tabindex="0"></div><span class="val">2,6 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>Un homme</td><td>69,2 %</td><td>27</td></tr><tr><td>Une femme</td><td>28,2 %</td><td>11</td></tr><tr><td>Autre</td><td>2,6 %</td><td>1</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q">
+  <h2>J&#x27;ai...</h2>
+  <p class="kicker">Une seule réponse · 24 répondants</p><div class="viz" data-view="chart"><div class="chart"><div class="row"><div class="lab">&lt; 20 ans</div><div class="track"><div class="bar" style="width:0.00%" data-tip="0,0 % · 0 réponse" tabindex="0"></div><span class="val">0,0 %</span></div></div><div class="row"><div class="lab">Entre 21 et 30 ans</div><div class="track"><div class="bar" style="width:16.70%" data-tip="16,7 % · 4 réponses" tabindex="0"></div><span class="val">16,7 %</span></div></div><div class="row"><div class="lab">Entre 31 et 40 ans</div><div class="track"><div class="bar" style="width:12.50%" data-tip="12,5 % · 3 réponses" tabindex="0"></div><span class="val">12,5 %</span></div></div><div class="row"><div class="lab">Entre 41 et 50 ans</div><div class="track"><div class="bar" style="width:29.20%" data-tip="29,2 % · 7 réponses" tabindex="0"></div><span class="val">29,2 %</span></div></div><div class="row"><div class="lab">Entre 51 et 60 ans</div><div class="track"><div class="bar" style="width:29.20%" data-tip="29,2 % · 7 réponses" tabindex="0"></div><span class="val">29,2 %</span></div></div><div class="row"><div class="lab">&gt; 60 ans</div><div class="track"><div class="bar" style="width:12.50%" data-tip="12,5 % · 3 réponses" tabindex="0"></div><span class="val">12,5 %</span></div></div></div><div class="tableview"><table><thead><tr><th>Réponse</th><th>Part</th><th>Nombre</th></tr></thead><tbody><tr><td>&lt; 20 ans</td><td>0,0 %</td><td>0</td></tr><tr><td>Entre 21 et 30 ans</td><td>16,7 %</td><td>4</td></tr><tr><td>Entre 31 et 40 ans</td><td>12,5 %</td><td>3</td></tr><tr><td>Entre 41 et 50 ans</td><td>29,2 %</td><td>7</td></tr><tr><td>Entre 51 et 60 ans</td><td>29,2 %</td><td>7</td></tr><tr><td>&gt; 60 ans</td><td>12,5 %</td><td>3</td></tr></tbody></table></div></div><button class="toggle" type="button">Voir les données</button>
+</section>
+<section class="q band">
+  <h2>Quelle aurait-pu être une source de motivation pour ta participation ?</h2>
+  <p class="kicker">Réponses libres · aucune réponse, branche non empruntée</p>
+</section>
+<section class="q">
+  <h2>Qu&#x27;as-tu aimé ? Moins aimé ?</h2>
+  <p class="kicker">Réponses libres · 23 réponses, texte intégral non modifié · les plus positives en premier</p>
+  <details><summary>Afficher les 23 réponses<span class="cnt"></span></summary><ol class="verb"><li>Les défis. L&#x27;interface est à revoir, elle ne tiens pas compte des différents OS (plus compatible Ios que Android et pas assez basée sur l&#x27;accessibilité (taille des caractères par exemple). Autre exemple, pour valider la photo, ça à été Rock and Roll, j&#x27;ai dû recommencer plusieurs fois, sans réussir, puis j&#x27;ai tapoter sur l&#x27;écran, près de l&#x27;icone de la coche, car la zone cliquable est très vraiment très mal définie. J&#x27;ai finalement réussi à cliquer au bon endroit, pour la valider. Ça m&#x27;a pris 2 ou 3 jours pour trouver cette astuce est enfin ajouter ma photo !
+Autre problème : La sélection des activités... Pourquoi la mise en favoris ne verrouille pas les activités dans la liste avec une icône de cadenat en haut de la liste ?
+Elle pourrait permettre de revenir sur son choix facilement !
+J&#x27;ai souvent retiré des activités de la liste en cliquant un peu trop à droite.
+Je m&#x27;arrête là, car mon cerveau atypique vas vous faire regretter cette question ouverte, en fin de questionnaire !
+
+Bon courage à toute l&#x27;équipe et peut-être à bientôt 😉</li><li>Le concept est sympa mais les missions sont trop contraignantes. Il faudrait pouvoir choisir les challenges individuels et d&#x27;équipe parmi une liste. Peut être sélectionner un profil initial, permettant de sélectionner les activités qu&#x27;on peut/veut faire</li><li>Les missions étaient bien accessible.
+Ajout des declarations des activités en intérieur est une bonne chose</li><li>J’ai aimé le challenge et la cohésion d’équipe. Ce que j’aime moins c’est que je suspecte d’autres joueurs d’autres équipes de « tricher »  en confiant à d’autres  personnes de l’équipe les missions sportives 🤷‍♂️</li><li>J’ai aimé les missions d’équipe.
+J’ai moins aimé lorsque mes activités sont à 0 pts</li><li>J’ai tout aimé</li><li>Les défis en équipe sont une grande source de motivation 
+J’ai moins aimé le week end quand il n’y a pas de quiz et défi photo</li><li>J’aime beaucoup le fait de devoir se dépasser et de se motiver les uns les autres</li><li>Les informations sur la question du durable</li><li>Le challenge, les déclarations activitées</li><li>Moi</li><li>La marche</li><li>Trop de course</li><li>Parfois les points ne sont aps pris en compte</li><li>Les défis sportifs</li><li>RAS</li><li>Missions peu variées</li><li>Le défi</li><li>Je trouve que le système permet trop de tricher ce qui dévoie l’intérêt du challenge et crée des tensions entre les équipes</li><li>Le challenge, les défis. Moins aimé : je trouve pas assez de missions un peu difficile</li><li>Aimé : Motivation de groupe, repousser les limites, bouger beaucoup +
+Moins aimé : la triche qui casse la dynamique  : Voir des joueurs donner leur téléphone à un collègue qui part courrir pour multiplier les points m’a donné envie de quitter le challenge :-(</li><li>Problème de synchro entre les applis sportives et health connect</li><li>Les challenges sont amusants et crée une belle motivation dans l’équipe. 
+Le côté négatif est le recul techno de l’appli. Les années précédentes la connexion avec garmin était automatique. On régresse. C’est dommage</li></ol></details>
+</section>
+<section class="q band">
+  <h2>As-tu une anecdote à nous partager sur le challenge ?</h2>
+  <p class="kicker">Réponses libres · 9 réponses, texte intégral non modifié · les plus positives en premier</p>
+  <details><summary>Afficher les 9 réponses<span class="cnt"></span></summary><ol class="verb"><li>Avoir louer des Velib avec l’équipe pour réussir la mission Vélo d’équipe . Très sympas nous en avons profité pour piqué niqier</li><li>Le moment où je vois une membre d’une équipe adverse avec sa coque vide de téléphone et son collègue en tenue de sport qui glisse le téléphone de sa co-équipière dans sa poche…</li><li>Oui le fait de s’envoyer des messages pour se motiver au niveau équipe c’est marrant</li><li>Non</li><li>Non</li><li>Ras</li><li>Non</li><li>Non</li><li>NA</li></ol></details>
+</section>
+<section class="q">
+  <h2>Pourquoi ? (envie d&#x27;un nouveau challenge)</h2>
+  <p class="kicker">Réponses libres · 13 réponses, texte intégral non modifié · les plus positives en premier</p>
+  <details><summary>Afficher les 13 réponses<span class="cnt"></span></summary><ol class="verb"><li>J&#x27;adore les defis</li><li>C’est fun</li><li>Car c’est motivant</li><li>Pour le fun</li><li>c&#x27;est un bon moyen de me motiver à faire du sport</li><li>Cela me motive à faire du sport et pour atteindre une meilleure place d’équipe.</li><li>Pour la motivation et l’esprit d’équipe</li><li>Pour le challenge</li><li>Pour le sport</li><li>Pour faire toujours mieux que la dernière fois</li><li>Une petite motivation en plus pour faire du sport</li><li>Ça permet  d&#x27;echanger avec les collègues dans un autre contexte.</li><li>C&#x27;est moteur</li></ol></details>
+</section>
+<section class="q band">
+  <h2>S&#x27;il y avait une seule chose à améliorer pour la prochaine édition, ce serait...</h2>
+  <p class="kicker">Réponses libres · 39 réponses, texte intégral non modifié · les plus positives en premier</p>
+  <details><summary>Afficher les 39 réponses<span class="cnt"></span></summary><ol class="verb"><li>Les activités déclarées devraient s&#x27;enregistrer comme la course le vélo et la marche. C&#x27;est très bien de les avoir ajoutées</li><li>Meilleure répartition des points missions et autres en fonction de la composition des équipes</li><li>Justifier les activités sportives à la salle par une photo et qu’on puisse enregistrer une course sans mettre play sur l’appli</li><li>Le nombre de challenge d’équipe</li><li>Rien</li><li>L’adhésion</li><li>L&#x27;ergonomie en général</li><li>Plus axé sur le sport</li><li>Connecter la montre</li><li>Le jeu et strava</li><li>Rajouter les sports en intérieur</li><li>Mon assiduité</li><li>Plus de missions difficiles, essayer d’équilibrer les équipes aussi</li><li>Ras</li><li>Ajouter la danse pour le sport</li><li>Je ne vois le pourcentage sur mission solidaire. Cela reste à 0</li><li>Contrôle des activités des concurrents</li><li>Ras</li><li>Modération des photos</li><li>/</li><li>La techno et supprimer les activités complémentaires (ou demander une photo de justificatif)</li><li>Ras</li><li>Je ne sais pas</li><li>La connexion strava</li><li>Pas d d&#x27;idée</li><li>Il pourrait y avoir des challenges surprises</li><li>La com associée</li><li>Prendre en compte les activités sur tapis à la salle</li><li>Rizn</li><li>Précision et réactivité de l’appli</li><li>Je ne sais pas</li><li>Rien</li><li>Je ne vois rien d’autre à améliorer</li><li>Support Strava ou Garmin</li><li>Meilleur contrôle des résultats  car + de 900 km d’exercices  physique pour certains qui ne font pas de sport le reste de l’année ce sont tout simplement dzs extra terrestres 🤣🤣</li><li>Trouver des moyens pour limiter la triche</li><li>Un classement individuel</li><li>Gestion de la triche</li><li>Moins de bugs, des missions + variées et un contrôle efficace de la triche dans les autres équipes</li></ol></details>
+</section>
+
+<footer>
+  Toutes les réponses au questionnaire bénéfices, 39 répondants. Le nombre de réponses varie d'une question à l'autre selon la logique du questionnaire, il est indiqué sous chaque titre. Les 39 répondants ayant tous participé au challenge, les branches réservées aux non-participants sont vides. Réponses libres reproduites telles quelles, sans correction ni reformulation, et sans aucune donnée nominative. SquadEasy, l'app qui fait bouger les boîtes.
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+document.querySelectorAll('.toggle').forEach(function(b){b.addEventListener('click',function(){
+ var v=b.parentElement.querySelector('.viz')||b.closest('details').querySelector('.viz'),
+     t=v.getAttribute('data-view')==='table';
+ v.setAttribute('data-view',t?'chart':'table');b.textContent=t?'Voir les données':'Voir le graphique';});});
+var tip=document.getElementById('tip');
+function show(e){var t=e.currentTarget.getAttribute('data-tip');if(!t)return;tip.textContent=t;tip.style.opacity=1;
+ var r=e.currentTarget.getBoundingClientRect();
+ tip.style.left=Math.min(r.right+10,window.innerWidth-tip.offsetWidth-10)+'px';tip.style.top=(r.top-4)+'px';}
+function hide(){tip.style.opacity=0;}
+document.querySelectorAll('.bar').forEach(function(b){b.addEventListener('mouseenter',show);b.addEventListener('mouseleave',hide);
+ b.addEventListener('focus',show);b.addEventListener('blur',hide);});
+var opened=[];
+function expand(){opened=[];document.querySelectorAll('details:not([open])').forEach(function(d){opened.push(d);d.open=true;});}
+function restore(){opened.forEach(function(d){d.open=false;});opened=[];}
+window.addEventListener('beforeprint',expand);
+window.addEventListener('afterprint',restore);
+document.getElementById('pdf').addEventListener('click',function(){window.print();});
+</script></body></html>
